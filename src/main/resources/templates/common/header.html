@@ -8,13 +8,13 @@
     <title>북 스토어</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
-	<link href="css/non-responsive.css" rel="stylesheet" />
+	<link href="/css/non-responsive.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
 
-	<link rel="icon" href="image/apple-touch-icon.png" />
+	<link rel="icon" href="/image/apple-touch-icon.png" />
   </head>
 
   <body>
@@ -45,7 +45,7 @@
 	            </ul>
 	            <ul class="nav navbar-nav navbar-right">
 	              <li><a href="#">장바구니</a></li>
-	              <li><a href="myAccount">마이 페이지</a></li>
+	              <li><a th:href="@{/login}">마이 페이지</a></li>
 	              <li><a href="#">로그아웃</a></li>
 	            </ul>
 	          </div><!--/.nav-collapse -->
@@ -55,7 +55,7 @@
   	
   	<div th:fragment="body-bottom-scripts">
   	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- 	   <script src="js/bootstrap.min.js"></script>
+ 	   <script src="/js/bootstrap.min.js"></script>
   	</div>
   </body>
   </html>

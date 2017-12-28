@@ -11,6 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.bookstore.service.impl.UserSecurityService;
+import com.bookstore.utility.SecurityUtility;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
@@ -27,11 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	private static final String[] PUBLIC_MATCHERS = {
-			"css/**",
-			"js/**",
-			"image/**",
+			"/css/**",
+			"/js/**",
+			"/image/**",
 			"/",
-			"myAccount"
+			"/myAccount"
 	};
 
 	@Override
