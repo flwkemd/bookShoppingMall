@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" >
-  <head th:fragment="common-header">
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>북 스토어</title>
 
@@ -44,11 +44,12 @@
 	              </form>
 	            </ul>
 	            <ul class="nav navbar-nav navbar-right">
-	              <li><a href="#">장바구니</a></li>
-	              <li><a sec:authorize="isAnonymous()" th:href="@{/login}">마이 페이지</a></li>
-	              <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">마이 페이지</a></li>
-	              <li><a sec:authorize="isAuthenticated()" href="@{/logout}">로그아웃</a></li>
-	            </ul>
+						<li><a th:href="@{/shoppingCart/cart}">장바구니</a></li>
+						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">마이 페이지</a></li>
+						<li><a sec:authorize="isAuthenticated()"
+							th:href="@{/myProfile}">마이 페이지</a></li>
+						<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a></li>
+					</ul>
 	          </div><!--/.nav-collapse -->
 	        </div><!--/.container-fluid -->
 	      </nav>
