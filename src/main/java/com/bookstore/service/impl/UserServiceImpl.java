@@ -2,6 +2,8 @@ package com.bookstore.service.impl;
 
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import com.bookstore.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
+	private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
+	
 	@Autowired
 	private RoleRepository roleRepository;
 	
@@ -51,7 +55,7 @@ public class UserServiceImpl implements UserService {
 		User localUser = userRepository.findByUsername(user.getUsername());
 		
 		if(localUser != null) {
-			throw new Exception("유저가 이미 존재합니다.");
+			LOG.info("유저{} 가 이미 존재합니다.",user.getUsername());
 		}else {
 			for(UserRole ur : userRoles) {
 				roleRepository.save(ur.getRole());

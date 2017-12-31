@@ -10,7 +10,7 @@
 		<div class="row" style="margin-bottom: -100px;">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
-					<h2 class="section-headline"><span th:text="${#strings.toUpperCase{user.username}}"></span></h2>
+					<h2 class="section-headline"><span th:text="${#strings.toUpperCase(user.username)}"></span></h2>
 				</h2>
 			</div>
 			<div class="col-xs-4">
@@ -48,7 +48,7 @@
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
 									<form th:action="@{/updateUserInfo}" method="post">
-										<input type="hidden" name="id" th:value="${user.id}">
+										<input type="hidden" name="id" th:value="${user.id}" />
 										
 										<div class="bg-info" th:if="${updateUserInfo}">유저 정보가 수정되었습니다.</div>
 										
@@ -70,7 +70,7 @@
 										<div class="form-group">
 											<label for="userName">아이디</label>
 													<input type="text" class="form-control" id="userName"
-													 name="userName" th:value="${user.userName}" />
+													 name="username" th:value="${user.username}" />
 										</div>
 										<div class="form-group">
 											<label for="currentPassword">현재 비밀번호</label>

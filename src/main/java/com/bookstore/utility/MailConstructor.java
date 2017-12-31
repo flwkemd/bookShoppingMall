@@ -17,7 +17,8 @@ public class MailConstructor {
 	
 	public SimpleMailMessage constructResetTokenEmail(
 			String contextPath, Locale locale, String token, User user, String password) {
-		String url = contextPath = "/newUser?token="+token;
+		
+		String url = contextPath + "/newUser?token="+token;
 		String message = "\n이메일을 활성화하기 위하여 클릭해주세요. 비밀번호는 \n"+password;
 		SimpleMailMessage email = new SimpleMailMessage();
 		email.setTo(user.getEmail());
