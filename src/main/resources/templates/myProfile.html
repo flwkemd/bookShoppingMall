@@ -105,6 +105,67 @@
 							</div>
 						</div>
 					</div>
+				
+					<!-- Order user information -->
+					<div class="tab-pane fade" id="tab-2"
+						th:classappend="${classActiveEdit}? 'in active'">
+						<div class="panel-group">
+							<div class="panel panel-default" style="border: none;">
+								<div class="panel-body"
+									style="background-color: #ededed; margin-top: 20px;">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Order user information -->
+					<div class="tab-pane fade" id="tab-3"
+						th:classappend="${classActiveEdit}? 'in active'">
+						<div class="panel-group">
+							<div class="panel panel-default" style="border: none;">
+								<div class="panel-body"
+									style="background-color: #ededed; margin-top: 20px;">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item active">
+											<a th:href="@{/listOfCreditCard}" th:style="${listOfCreditCards}? 'color:red'">신용카드 목록</a>
+										</li>
+										<li class="breadcrumb-item active">
+											<a th:href="@{/addNewCreditCard}" th:style="${addNewCreditCard}? 'color:red'">신용카드 추가/수정</a>
+										</li>
+									</ol>
+									
+									<div th:if="${listOfCreditCards}">
+										<form th:action="@{/setDefaultPayment}" method="post">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>기본 설정</th>
+														<th>신용 카드</th>
+														<th>사용 여부</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="userPayment : ${userPaymentlist}">
+														<td><input type="radio"
+															name="defaultShippingAddressId"
+															th:value="${userShipping.id}"
+															th:checked="${userShipping.userShippingDefault}" /><span>기본 설정</span></td>
+														<td th:text="${userPayment.cardName}"></td>
+														<td>
+															<a th:href="@{/updateCreditCard(id=${userPayment.id})}"><i class="fa fa-pencil"></i></a>
+															<a th:href="@{/removeCreditCard(id=${userPayment.id})}"><i class="fa fa-times"></i></a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<button class="btn btn-primary" type="submit">저장하기</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
