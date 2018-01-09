@@ -18,42 +18,49 @@
   </head>
 
   <body>
-  	<div th:fragment="navbar">
-	  	<div class="page-top" style="width:100%; height:20px; background-color: #f46b42;"></div>
-	      <!-- Static navbar -->
-	      <nav class="navbar navbar-default navbar-inverse">
-	        <div class="container-fluid">
-	          <div class="navbar-header">
-	            <a class="navbar-brand" href="#">북 스토어</a>
-	          </div>
-	          <div id="navbar">
-	            <ul class="nav navbar-nav navbar-left">
-	              <li class="dropdown">
-	                <a th:href="@{/bookshelf}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">책<span class="caret"></span></a>
-	                <ul class="dropdown-menu">
-	                  <li><a th:href="@{/bookshelf}">책 보기</a></li>
-	                  <li><a href="#">상점 시간 &#38; 위치</a></li>
-	                  <li><a href="#">질문하기</a></li>
-	                </ul>
-	              </li>
-	              <form class="navbar-form">
-	              	<div class="form-group">
-	              		<input type="text" name="keyword" class="form-control" placeholder="책 제목을 검색하세요" />
-	              	</div>
-	              	<button type="submit" class="btn btn-default">검색</button>
-	              </form>
-	            </ul>
-	            <ul class="nav navbar-nav navbar-right">
-						<li><a th:href="@{/shoppingCart/cart}">장바구니</a></li>
-						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">마이 페이지</a></li>
+	<div th:fragment="navbar">
+		<div class="page-top"
+			style="width: 100%; height: 20px; background-color: #f46b42;"></div>
+		<!-- Static navbar -->
+		<nav class="navbar navbar-default navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/}">북 스토어</a>
+				</div>
+				<div id="navbar">
+					<ul class="nav navbar-nav navbar-left">
+						<li class="dropdown"><a th:href="@{/bookshelf}"
+							class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-haspopup="true" aria-expanded="false">책 <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a th:href="@{/bookshelf}">책 보기</a></li>
+								<li><a th:href="@{/hours}">운영 시간 &#38; 위치</a></li>
+								<li><a th:href="@{/faq}">FAQ</a></li>
+
+							</ul></li>
+						<form class="navbar-form" th:action="@{/searchBook}" method="post">
+							<div class="form-group">
+								<input type="text" name="keyword" class="form-control"
+									placeholder="책 제목" />
+							</div>
+							<button type="submit" class="btn btn-default">검색</button>
+						</form>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a th:href="@{/shoppingCart/cart}">쇼핑 카트</a></li>
+						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a></li>
 						<li><a sec:authorize="isAuthenticated()"
 							th:href="@{/myProfile}">마이 페이지</a></li>
 						<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a></li>
 					</ul>
-	          </div><!--/.nav-collapse -->
-	        </div><!--/.container-fluid -->
-	      </nav>
-  	</div>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+			<!--/.container-fluid -->
+		</nav>
+	</div>
+
   	
   	<div th:fragment="body-bottom-scripts">
   	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
