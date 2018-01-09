@@ -11,13 +11,16 @@ public class KRConstants {
 	
 	public final static Map<String, String> mapOfKRStates = new HashMap<String, String>(){
 		{
-			put("SE", "서울");
-			put("IN", "인천");
-			put("KY", "경기");
-			put("CS", "충청남도");
-			put("CN", "충청북도");
-			put("KS", "경상도");
-			put("BS", "부산");
+			put("서울특별시", "SEO");
+			put("인천광역시", "ICC");
+			put("경기도", "KKD");
+			put("강원도", "KWD");
+			put("충청북도", "CCND");
+			put("충청남도", "CCSD");
+			put("경상북도", "KSND");
+			put("경상남도", "KSSD");
+			put("경상남도", "KSSD");
+			put("제주특별시", "JEJU");
 		}
 	};
 	

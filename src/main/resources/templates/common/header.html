@@ -5,17 +5,24 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>북 스토어</title>
+<title>북 스토어</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
-	<link href="/css/non-responsive.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet" />
+<link href="/css/non-responsive.css" rel="stylesheet" />
 
-	<link rel="icon" href="/image/apple-touch-icon.png" />
-  </head>
+<!-- data table -->
+<link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet" />
+<link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet" />
+
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+
+<link rel="icon" href="/image/applie-touch-icon.png" />
+</head>
 
   <body>
 	<div th:fragment="navbar">
@@ -60,11 +67,16 @@
 			<!--/.container-fluid -->
 		</nav>
 	</div>
-
   	
-  	<div th:fragment="body-bottom-scripts">
-  	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- 	   <script src="/js/bootstrap.min.js"></script>
-  	</div>
-  </body>
-  </html>
+	<div th:fragment="body-bottom-scripts">
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+
+		<script th:src="@{/js/scripts.js}"></script>
+
+		<!-- data table -->
+		<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+		<script th:src="@{/js/dataTables.bootstrap.min.js}"></script>
+	</div>
+</body>
+</html>

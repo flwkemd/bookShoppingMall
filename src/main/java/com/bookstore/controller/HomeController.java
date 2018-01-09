@@ -71,9 +71,17 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/bookshelf")
-	public String bookshelf(Model model) {
+	public String bookshelf(Model model, Principal principal) {
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		
 		List<Book> bookList = bookService.findAll();
 		model.addAttribute("bookList", bookList);
+		model.addAttribute("activeAll",true);
+		
 		return "bookshelf";
 	}
 	
@@ -162,7 +170,7 @@ public class HomeController {
 		model.addAttribute("userShippingList", user.getUserShippingList());
 		//model.addAttribute("orderList", user.getOrderList());
 
-		model.addAttribute("listOfCreditcards", true);
+		model.addAttribute("listOfCreditCards", true);
 		model.addAttribute("classActiveBilling", true);
 		model.addAttribute("listOfShippingAddresses", true);
 		
@@ -177,7 +185,7 @@ public class HomeController {
 		model.addAttribute("userShippingList", user.getUserShippingList());
 		//model.addAttribute("orderList", user.getOrderList());
 		
-		model.addAttribute("listOfCreditcards", true);
+		model.addAttribute("listOfCreditCards", true);
 		model.addAttribute("classActiveBilling", true);
 		model.addAttribute("listOfShippingAddresses", true);
 
@@ -217,6 +225,7 @@ public class HomeController {
 		
 		model.addAttribute("addNewShippingAddress", true);
 		model.addAttribute("classActiveShipping", true);
+		model.addAttribute("listOfCreditCards", true);
 		
 		UserShipping userShipping = new UserShipping();
 		
