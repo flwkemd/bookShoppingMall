@@ -142,7 +142,7 @@
 													<tr>
 														<th>기본 설정</th>
 														<th>신용 카드</th>
-														<th>사용 여부</th>
+														<th>수정 / 삭제</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -153,7 +153,7 @@
 															th:checked="${userPayment.defaultPayment}" /><span>기본 설정</span></td>
 														<td th:text="${userPayment.cardName}"></td>
 														<td>
-															<a th:href="@{/updateCreditCard(id=${userPayment.id})}"><i class="fa fa-pencil"></i></a>
+															<a th:href="@{/updateCreditCard(id=${userPayment.id})}"><i class="fa fa-pencil"></i></a>&nbsp; &nbsp;
 															<a th:href="@{/removeCreditCard(id=${userPayment.id})}"><i class="fa fa-times"></i></a>
 														</td>
 													</tr>
@@ -250,7 +250,9 @@
 														<label>* 만료 기간</label>
 														<div class="row">
 															<div class="col-xs-6">
-																<select class="form-control" name="expiryMonth" required="required" th:value="${userPayment.expiryMonth}">
+																<select class="form-control" name="expiryMonth"
+																	required="required"
+																	th:value="${userPayment.expiryMonth}">
 																	<option disabled="disabled">-- 월 --</option>
 																	<option value="01">1월 (01)</option>
 																	<option value="02">2월 (02)</option>
@@ -267,8 +269,9 @@
 																</select>
 															</div>
 															<div class="col-xs-6">
-																<select class="form-control" name="expiryYear" th:value="${userPayment.expiryYear}">
-																	<option disabled="disabled"> -- 년도 -- </option>
+																<select class="form-control" name="expiryYear"
+																	th:value="${userPayment.expiryYear}">
+																	<option disabled="disabled">-- 년도 --</option>
 																	<option value="2018">2018</option>
 																	<option value="2019">2019</option>
 																	<option value="2020">2020</option>

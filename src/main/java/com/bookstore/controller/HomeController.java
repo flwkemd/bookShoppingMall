@@ -35,6 +35,7 @@ import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.Role;
 import com.bookstore.domain.security.UserRole;
 import com.bookstore.service.BookService;
+import com.bookstore.service.UserPaymentService;
 import com.bookstore.service.UserService;
 import com.bookstore.service.impl.UserSecurityService;
 import com.bookstore.utility.KRConstants;
@@ -58,6 +59,9 @@ public class HomeController {
 	
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private UserPaymentService userPaymentService;
 	
 	@RequestMapping("/")
 	public String index() {
@@ -260,6 +264,35 @@ public class HomeController {
 		model.addAttribute("listOfShippingAddresses", true);
 	
 		return "myProfile";
+	}
+	
+	@RequestMapping("/updateCreditCard")
+	public String updateCreditCard(@ModelAttribute("id") Long creditCardId, Principal principal, Model model) {
+		User user = userService.findByUsername(principal.getName());
+		UserPayment userPayment = userPaymentService.findById(creditCardId);
+		
+		if(user.getId() != userPayment.getUser().getId()) {
+			return "badRequestPage";
+		} else {
+			model.addAttribute("user", user);
+			UserBilling userBilling = userPayment.getUserBilling();
+			model.addAttribute("userPayment", userPayment);
+			model.addAttribute("userBilling", userBilling);
+			
+			List<String> stateList = KRConstants.listOfKRStatesCode;
+			Collections.sort(stateList);
+			model.addAttribute("stateList", stateList);
+			
+			model.addAttribute("addNewCreditCard", true);
+			model.addAttribute("classActiveBilling", true);
+			model.addAttribute("listOfShippingAddresses", true);
+			
+			model.addAttribute("userPaymentList", user.getUserPaymentList());
+			model.addAttribute("userShippingList", user.getUserShippingList());
+			//model.addAttribute("orderList", user.getOrderList());
+			
+			return "myProfile";
+		}
 	}
 	
 	@RequestMapping(value="/newUser", method=RequestMethod.POST)
