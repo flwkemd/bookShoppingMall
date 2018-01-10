@@ -166,23 +166,48 @@ public class HomeController {
 		return "myProfile";
 	}
 	
-	@RequestMapping("/listOfCreditCards")
-	public String listOfCreditCards(Model model, Principal principal, HttpServletRequest request) {
+	@RequestMapping("/addNewShippingAddress")
+	public String addNewShippingAddress(Model model, Principal principal){
 		User user = userService.findByUsername(principal.getName());
 		model.addAttribute("user", user);
+		
+		model.addAttribute("addNewShippingAddress", true);
+		model.addAttribute("classActiveShipping", true);
+		model.addAttribute("listOfCreditCards", true);
+		
+		UserShipping userShipping = new UserShipping();
+		
+		model.addAttribute("userShipping", userShipping);
+		
+		List<String> stateList = KRConstants.listOfKRStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList", stateList);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
 		model.addAttribute("userShippingList", user.getUserShippingList());
 		//model.addAttribute("orderList", user.getOrderList());
-
-		model.addAttribute("listOfCreditCards", true);
-		model.addAttribute("classActiveBilling", true);
+		
+		return "myProfile";
+	}
+	
+	@RequestMapping(value="/addNewShippingAddress", method=RequestMethod.POST)
+	public String addNewShippingAddressPost(@ModelAttribute("userShipping") UserShipping userShipping,
+			Principal principal, Model model){
+		User user = userService.findByUsername(principal.getName());
+		userService.updateUserShipping(userShipping, user);
+		
+		model.addAttribute("user", user);
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("listOfShippingAddresses", true);
+		model.addAttribute("classActiveShipping", true);
+		model.addAttribute("listOfCreditCards", true);
+		//model.addAttribute("orderList", user.getOrderList());
 		
 		return "myProfile";
 	}
 
-	@RequestMapping("/listShippingAddresses")
-	public String listShippingAddresses(Model model, Principal principal, HttpServletRequest request) {
+	@RequestMapping("/listOfShippingAddresses")
+	public String listOfShippingAddresses(Model model, Principal principal, HttpServletRequest request) {
 		User user = userService.findByUsername(principal.getName());
 		model.addAttribute("user", user);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
@@ -190,9 +215,9 @@ public class HomeController {
 		//model.addAttribute("orderList", user.getOrderList());
 		
 		model.addAttribute("listOfCreditCards", true);
-		model.addAttribute("classActiveBilling", true);
+		model.addAttribute("classActiveShipping", true);
 		model.addAttribute("listOfShippingAddresses", true);
-
+		
 		return "myProfile";
 	}
 
@@ -203,6 +228,7 @@ public class HomeController {
 		
 		model.addAttribute("addNewCreditCard", true);
 		model.addAttribute("classActiveBilling", true);
+		model.addAttribute("listOfShippingAddresses", true);
 		
 		UserBilling userBilling = new UserBilling();
 		UserPayment userPayment = new UserPayment();
@@ -222,31 +248,6 @@ public class HomeController {
 		return "myProfile";
 	}
 	
-	@RequestMapping("/addNewShippingAddress")
-	public String addNewShippingAddress(Model model, Principal principal) {
-		User user = userService.findByUsername(principal.getName());
-		model.addAttribute("user", user);
-		
-		model.addAttribute("addNewShippingAddress", true);
-		model.addAttribute("classActiveShipping", true);
-		model.addAttribute("listOfCreditCards", true);
-		
-		UserShipping userShipping = new UserShipping();
-		
-		model.addAttribute("userShipping", userShipping);
-		
-		List<String> stateList = KRConstants.listOfKRStatesCode;
-		Collections.sort(stateList);
-		model.addAttribute("stateList", stateList);
-		
-		model.addAttribute("listOfShippingAddresses", true);
-		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
-		//model.addAttribute("orderList", user.getOrderList());
-		
-		return "myProfile";
-	}
-	
 	@RequestMapping(value="/addNewCreditCard", method=RequestMethod.POST)
 	public String addNewCreditCard(
 			@ModelAttribute("userPayment") UserPayment userPayment,
@@ -263,6 +264,21 @@ public class HomeController {
 		model.addAttribute("classActiveBilling", true);
 		model.addAttribute("listOfShippingAddresses", true);
 	
+		return "myProfile";
+	}
+	
+	@RequestMapping("/listOfCreditCards")
+	public String listOfCreditCards(Model model, Principal principal, HttpServletRequest request) {
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
+		//model.addAttribute("orderList", user.getOrderList());
+
+		model.addAttribute("listOfCreditCards", true);
+		model.addAttribute("classActiveBilling", true);
+		model.addAttribute("listOfShippingAddresses", true);
+		
 		return "myProfile";
 	}
 	
