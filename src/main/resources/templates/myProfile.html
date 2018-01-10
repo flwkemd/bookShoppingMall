@@ -146,11 +146,11 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:each="userPayment : ${userPaymentlist}">
+													<tr th:each="userPayment : ${userPaymentList}">
 														<td><input type="radio"
-															name="defaultShippingAddressId"
-															th:value="${userShipping.id}"
-															th:checked="${userShipping.userShippingDefault}" /><span>기본 설정</span></td>
+															name="defaultUserPaymentId"
+															th:value="${userPayment.id}"
+															th:checked="${userPayment.defaultPayment}" /><span>기본 설정</span></td>
 														<td th:text="${userPayment.cardName}"></td>
 														<td>
 															<a th:href="@{/updateCreditCard(id=${userPayment.id})}"><i class="fa fa-pencil"></i></a>
