@@ -299,18 +299,140 @@
 											</div>
 											<hr />
 											<button type="submit" class="btn btn-primary btn-lg">저장하기</button>
+																		</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Shipping Information -->
+					<div class="tab-pane fade" id="tab-4"
+						th:classappend="${classActiveShipping}? 'in active'">
+						<div class="panel-group">
+							<div class="panel panel-default" style="border: none;">
+								<div class="panel-body"
+									style="background-color: #ededed; margin-top: 20px;">
+
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item active"><a
+											th:href="@{/listOfShippingAddresses}"
+											th:style="${listOfShippingAddresses}? 'color:red'">배송지 주소 목록</a></li>
+										<li class="breadcrumb-item active"><a
+											th:href="@{/addNewShippingAddress}"
+											th:style="${addNewShippingAddress}? 'color:red'">배송지 추가/수정</a></li>
+									</ol>
+
+									<div th:if="${listOfShippingAddresses}">
+										<form th:action="@{/setDefaultShippingAddress}" method="post">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>기본 설정</th>
+														<th>배송지 주소</th>
+														<th>삭제 / 수정</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="userShipping : ${userShippingList}">
+														<td><input type="radio"
+															name="defaultShippingAddressId"
+															th:value="${userShipping.id}"
+															th:checked="${userShipping.userShippingDefault}" /><span>기본 설정</span></td>
+														<td
+															th:text="${userShipping.userShippingStreet1}+', '+
+														${userShipping.userShippingCity}+', '+${userShipping.userShippingState}"></td>
+														<td><a
+															th:href="@{/updateUserShipping(id=${userShipping.id})}"><i
+																class="fa fa-pencil"></i></a>&nbsp;&nbsp;<a
+															th:href="@{/removeUserShipping(id=${userShipping.id})}"><i
+																class="fa fa-times"></i></a></td>
+													</tr>
+												</tbody>
+											</table>
+											<button class="btn btn-primary" type="submit">저장하기</button>
+										</form>
+									</div>
+
+									<div th:if="${addNewShippingAddress}">
+										<form th:action="@{/addNewShippingAddress}" method="post">
+											<div class="bg-info" th:if="${updateUserShippingInfo}">유저 정보가 수정되었습니다.</div>
+
+											<input hidden="hidden" name="id"
+												th:value="${userShipping.id}" />
+
+											<!-- Shipping Address -->
+											<hr />
+											<div class="form-group">
+												<h4>배송 주소</h4>
+											</div>
+											<div class="form-group">
+												<label for="shippingName">* 이름</label> <input type="text"
+													class="form-control" id="shippingName"
+													placeholder="이름" th:name="userShippingName"
+													required="required"
+													th:value="${userShipping.userShippingName}" />
+											</div>
+											<div class="form-group">
+												<label for="shippingAddress">* 주소</label> <input
+													type="text" class="form-control" id="shippingAddress"
+													placeholder="주소 1"
+													th:name="userShippingStreet1" required="required"
+													th:value="${userShipping.userShippingStreet1}" /> <input
+													type="text" class="form-control"
+													placeholder="주소 2" th:name="userShppingStreet2"
+													th:value="${userShipping.userShippingStreet2}" />
+											</div>
+
+											<div class="row">
+												<div class="col-xs-4">
+													<div class="form-group">
+														<label for="shippingState">* 도</label> <select
+															id="shippingState" class="form-control"
+															th:name="userShippingState"
+															th:value="${userShipping.userShippingState}"
+															required="required">
+															<option value="" disabled="disabled"> 도시를 선택해주세요.</option>
+															<option th:each="state : ${stateList}" th:text="${state}"
+																th:selected="(${userShipping.userShippingState}==${state})"></option>
+														</select>
+													</div>
+												</div>
+												<div class="col-xs-4">
+													<div class="form-group">
+														<label for="shippingCity">* 구/동/면/리</label> <input
+															type="text" class="form-control" id="shippingCity"
+															placeholder="구/동/면/리" th:name="userShippingCity"
+															required="required"
+															th:value="${userShipping.userShippingCity}" />
+													</div>
+												</div>
+												<div class="col-xs-4">
+													<div class="form-group">
+														<label for="shippingZipcode">* 우편 번호</label> <input
+															type="text" class="form-control" id="shippingZipcode"
+															placeholder="우편 번호"
+															th:name="userShippingZipcode" required="required"
+															th:value="${userShipping.userShippingZipcode}" />
+													</div>
+												</div>
+											</div>
+
+											<hr />
+											<button type="submit" class="btn btn-primary btn-lg">저장하기</button>
 										</form>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end of container -->
-<div th:replace="common/header :: footer"/>
+	<div th:replace="common/header :: footer"/>
 
 	<div th:replace="common/header :: body-bottom-scripts" />
 </body>
