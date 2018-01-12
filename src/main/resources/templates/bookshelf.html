@@ -71,10 +71,10 @@
 
 											<a th:href="@{/bookDetail?id=}+${book.id}"><span
 												style="font-size: x-large; color: #db3208;"><span
-													th:text="${#numbers.formatDecimal(book.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span>원</span></a><br/>
+													th:text="${#numbers.formatDecimal(book.ourPrice, 0 , 'COMMA', 0, 'POINT')}"></span>원</span></a><br/>
 
 											<span style="text-decoration: line-through;"><span
-												th:text="${#numbers.formatDecimal(book.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span>원</span>
+												th:text="${#numbers.formatDecimal(book.listPrice, 0 , 'COMMA', 0, 'POINT')}"></span>원</span>
 
 											<p th:utext="${#strings.abbreviate(book.description, 1000)}"></p>
 										</div>
