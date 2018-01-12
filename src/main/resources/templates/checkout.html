@@ -64,13 +64,379 @@
 					</div>
 				</div>
 				<div class="col-xs-8">
-				
+					<div th:if=${missingRequiredField}>
+						<h5 class="alert alert-warning">필수 사항에 입력되지 않았습니다.</h5>
+					</div>
+					
+					<div class="panel-group" id="accordion">
+						
+						<!-- 1. Shipping Address -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#shippingInfo">
+										1. 배송 주소
+									</a>
+								</h4>
+							</div>
+							<div id="shippingInfo" class="panel-collapse collapse" th:classappend="${classActiveShipping}? 'in'">
+								<div class="panel-body">
+									<table class="table" th:if="${not emptyShippingList}">
+										<thead>
+											<tr>
+												<th>배송 주소</th>
+												<th>동작</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="userShipping : ${userShippingList}">
+												<td
+													th:text="${userShipping.userShippingStreet1}+' '+${userShipping.userShippingStreet2}+', '+${userShipping.userShippingState}
+												+', '+${userShipping.userShippingCity}"></td>
+												<td><a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">주소 사용하기</a></td>
+											</tr>
+										</tbody>
+									</table>
+									
+									<div class="form-group">
+										<label for="shippingName">* 이름</label>
+										<input type="text" class="form-control" id="shippingName" placeholder="수신자 이름" 
+										name="shippingAddressName" th:value="${shippingAddress.shippingAddressName}" />
+									</div>
+
+									<div class="form-group">
+										<label for="shippingStreet">* 배송 주소</label> <input
+											type="text" class="form-control" id="shippingStreet"
+											placeholder="주소 1" name="shippingAddressStreet1"
+											th:value="${shippingAddress.shippingAddressStreet1}" />
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control"
+											placeholder="주소 2" name="shippingAddressStreet2"
+											th:value="${shippingAddress.shippingAddressStreet2}" />
+									</div>
+
+									<div class="row">
+										<div class="col-xs-4">
+											<div class="form-group">
+												<label for="shippingState">* 도</label> <select
+													id="shippingState" class="form-control"
+													th:name="shippingAddressState"
+													th:value="${shippingAddress.shippingAddressState}"
+													required="required">
+													<option value="" disabled="disabled">도시를 선택해주세요.</option>
+													<option th:each="state : ${stateList}" th:text="${state}"
+														th:selected="(${shippingAddress.shippingAddressState}==${state})"></option>
+												</select>
+											</div>
+										</div>
+										<div class="col-xs-4">
+											<div class="form-group">
+												<label for="shippingCity">* 구/동/면/리</label> <input type="text"
+													class="form-control" id="shippingCity"
+													placeholder="구/동/면/리" th:name="shippingAddressCity"
+													required="required"
+													th:value="${shippingAddress.shippingAddressCity}" />
+											</div>
+										</div>										
+										<div class="col-xs-4">
+											<div class="form-group">
+												<label for="shippingZipcode">* 우편번호</label> <input
+													type="text" class="form-control" id="shippingZipcode"
+													placeholder="우편 번호"
+													th:name="shippingAddressZipcode" required="required"
+													th:value="${shippingAddress.shippingAddressZipcode}" />
+											</div>
+										</div>
+									</div>
+									<a data-toggle="collapse" data-parent="#accordion"
+										class="btn btn-warning pull-right" href="#paymentInfo">다음</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Payment Information -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#paymentInfo"> 2. 결제 정보 </a>
+								</h4>
+							</div>
+
+							<div id="paymentInfo" class="panel-collapse collapse"
+								th:classappend="${classActivePayment}? 'in'">
+								<div class="panel-body">
+									<table class="table" th:if="${not emptyPaymentList}">
+										<thead>
+											<tr>
+												<th>신용 카드</th>
+												<th>동작</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="userPayment : ${userPaymentList}">
+												<td th:text="${userPayment.cardName}"></td>
+												<td><a
+													th:href="@{/setPaymentMethod(userPaymentId=${userPayment.id})}">신용카드 사용하기</a></td>
+											</tr>
+										</tbody>
+									</table>
+
+									<!-- Credit Card Information -->
+									<div class="row">
+										<div class="col-xs-12">
+											<img th:src="@{/image/creditcard.png}" class="img-responsive" /><br />
+											<div class="form-group">
+												<label for="cardType">* 카드 타입: </label> <select
+													class="form-control" id="cardType" name="type"
+													th:value="${payment.type}">
+													<option value="visa">Visa</option>
+													<option value="mastercard">Mastercard</option>
+													<option value="discover">Discover</option>
+													<option value="amex">American Express</option>
+												</select>
+											</div>
+
+											<div class="form-group">
+												<label for="cardHolder">* 카드 소지자 이름:</label> <input
+													type="text" class="form-control" id="cardHolder"
+													required="required" placeHolder="카드 소지사 이름"
+													th:name="holderName" th:value="${payment.holderName}" />
+											</div>
+											<div class="form-group">
+												<label for="cardNumber">* 카드 번호:</label>
+												<div class="input-group">
+													<input type="tel" class="form-control" id="cardNumber"
+														required="required" placeHolder="카드 번호"
+														th:name="cardNumber" th:value="${payment.cardNumber}" />
+													<span class="input-group-addon"><i
+														class="fa fa-credit-card" aria-hidden="true"></i></span>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-xs-7">
+											<div class="form-group">
+												<label>* 만료 기간</label>
+												<div class="row">
+													<div class="col-xs-6">
+														<select class="form-control" name="expiryMonth"
+															required="required" th:value="${payment.expiryMonth}">
+															<option disabled="disabled">-- 월 --</option>
+																<option value="01">1월 (01)</option>
+																<option value="02">2월 (02)</option>
+																<option value="03">3월 (03)</option>
+																<option value="04">4월 (04)</option>
+																<option value="05">5월 (05)</option>
+																<option value="06">6월 (06)</option>
+																<option value="07">7월 (07)</option>
+																<option value="08">8월 (08)</option>
+																<option value="09">9월 (09)</option>
+																<option value="10">10월 (10)</option>
+																<option value="11">11월 (11)</option>
+																<option value="12">12월 (12)</option>
+														</select>
+													</div>
+													<div class="col-xs-6">
+														<select class="form-control" name="expiryYear"
+															th:value="${payment.expiryYear}">
+															<option disabled="disabled">-- 년도 --</option>
+																<option value="2018">2018</option>
+																<option value="2019">2019</option>
+																<option value="2020">2020</option>
+																<option value="2021">2021</option>
+																<option value="2022">2022</option>
+																<option value="2023">2023</option>
+																<option value="2024">2024</option>
+																<option value="2025">2025</option>
+																<option value="2026">2026</option>
+																<option value="2027">2027</option>
+																<option value="2028">2028</option>
+																<option value="2029">2029</option>
+																<option value="2030">2030</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-5">
+											<div class="form-group">
+												<label for="cardCVC">CVC</label> <input id="cardCVC"
+													type="tel" class="form-control" name="cvc"
+													placeholder="CVC" th:name="cvc"
+													th:value="${payment.cvc}" />
+											</div>
+										</div>
+									</div>
+
+
+									<!-- Billing Address -->
+									<div class="checkbox">
+										<label> <input id="theSameAsShippingAddress"
+											type="checkbox" name="billingSameAsShipping" value="true" />
+											배송지랑 같은 주소 사용하기
+										</label>
+									</div>
+
+									<div class="form-group">
+										<label for="billingName">* 이름</label> <input type="text"
+											class="form-control billingAddress" id="billingName"
+											placeholder="카드 소지자 이름" th:name="billingAddressName"
+											required="required"
+											th:value="${billingAddress.billingAddressName}" />
+									</div>
+									<div class="form-group">
+										<label for="billingAddress">* 주소</label> <input
+											type="text" class="form-control billingAddress" id="billingAddress"
+											placeholder="주소 1"
+											th:name="billingAddressStreet1" required="required"
+											th:value="${billingAddress.billingAddressStreet1}" /> <input
+											type="text" class="form-control billingAddress" id="billingAddress"
+											placeholder="주소 2"
+											th:name="billingAddressStreet2"
+											th:value="${billingAddress.billingAddressStreet2}" />
+									</div>
+
+									<div class="row">
+										<div class="col-xs-4">
+											<div class="form-group">
+												<label for="billingState">* 도</label> <select
+													id="billingState" class="form-control billingAddress"
+													th:name="billingAddressState"
+													th:value="${billingAddress.billingAddressState}"
+													required="required">
+													<option value="" disabled="disabled">도시를 선택해주세요.</option>
+													<option th:each="state : ${stateList}" th:text="${state}"
+														th:selected="(${billingAddress.billingAddressState}==${state})"></option>
+												</select>
+											</div>
+										</div>
+										<div class="col-xs-4">
+											<div class="form-group">
+												<label for="billingCity">* 구/동/면/리 </label><input type="text"
+													class="form-control billingAddress" id="billingCity"
+													placeholder="구/동/면/리" th:name="billingAddressCity"
+													required="required"
+													th:value="${billingAddress.billingAddressCity}" />
+											</div>
+										</div>
+										<div class="col-xs-4">
+											<div class="form-group">
+												<label for="billingZipcode">* 우편번호</label> <input
+													type="text" class="form-control billingAddress" id="billingZipcode"
+													placeholder="우편번호"
+													th:name="billingAddressZipcode" required="required"
+													th:value="${billingAddress.billingAddressZipcode}" />
+											</div>
+										</div>
+									</div>
+
+									<a data-toggle="collapse" data-parent="#accordion"
+										class="btn btn-warning pull-right" href="#reviewItems">다음</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- 3. Review Items and Shipping -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#reviewItems"> 3. 결제 리스트 </a>
+								</h4>
+							</div>
+							<div id="reviewItems" class="panel-collapse collapse">
+								<div class="panel-body">
+									<h4>배송 방식:</h4>
+									<div class="radio">
+										<label> <input type="radio" name="shippingMethod"
+											value="groundShipping" checked="checked" /> 보통 배송
+										</label>
+									</div>
+									<div class="radio">
+										<label> <input type="radio" name="shippingMethod"
+											value="premiumShipping" /> 빠른 배송
+										</label>
+									</div>
+
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>제품</h4>
+										</div>
+										<div class="col-xs-2">
+											<h4>가격</h4>
+										</div>
+										<div class="col-xs-2">
+											<h4>수량</h4>
+										</div>
+									</div>
+
+									<!-- display products in cart -->
+									<div class="row" th:each="cartItem : ${cartItemList}">
+											<hr />
+											<div class="col-xs-2">
+												<a th:href="@{/bookDetail(id=${cartItem.book.id})}"> <img
+													class="img-responsive shelf-book"
+													th:src="#{adminPath}+@{/image/book/}+${cartItem.book.id}+'.png'"
+													style="width: 70px;" />
+												</a>
+											</div>
+											<div class="col-xs-6">
+												<div style="margin-left: 50px;">
+													<a th:href="@{/bookDetail?id=}+${cartItem.book.id}"><h4
+															th:text="${cartItem.book.title}"></h4></a>
+													<p th:if="${cartItem.book.inStockNumber&gt;10}"
+														style="color: green;">재고 있음</p>
+													<p
+														th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}"
+														style="color: green;">
+														 <span th:text="${cartItem.book.inStockNumber}"></span>개 남음
+													</p>
+													<p th:if="${cartItem.book.inStockNumber==0}"
+														style="color: darkred;">재고가 없습니다.</p>
+													<a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">삭제하기</a>
+												</div>
+											</div>
+
+											<div class="col-xs-2">
+												<h5 style="color: #db3208; font-size: large;">
+													<span th:text="${cartItem.book.ourPrice}"
+														th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span> 원
+												</h5>
+											</div>
+
+											<div class="col-xs-2">
+												<h5 style="font-size: large;" th:text="${cartItem.qty}"></h5>
+											</div>
+										
+									</div>
+
+									<hr />
+									<h4 class="col-xs-12 text-right">
+										<strong style="font-size: large;">주문 금액 (<span
+											th:text="${#lists.size(cartItemList)}"></span> 제품):
+										</strong> <span style="color: #db3208; font-szie: large;"><span
+											th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0 ,0)}"></span></span> 원
+									</h4>
+									<br />
+									<br />
+									<button type="submit" class="btn btn-warning btn-block">결제하기</button>
+									<p style="font-size:smaller;">결제를 위하여
+									<a href="#">개인 정보</a>사항 및<a href="#">사용 조건</a>에 동의합니다.</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</form>
 		</div>
-
 	</div>
 	<!-- end of container -->
+	
 <div th:replace="common/header :: footer"/>
 
 	<div th:replace="common/header :: body-bottom-scripts" />
