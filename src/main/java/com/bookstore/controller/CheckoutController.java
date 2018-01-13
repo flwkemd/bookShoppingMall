@@ -34,6 +34,7 @@ import com.bookstore.service.UserPaymentService;
 import com.bookstore.service.UserService;
 import com.bookstore.service.UserShippingService;
 import com.bookstore.utility.KRConstants;
+import com.bookstore.utility.MailConstructor;
 
 @Controller
 public class CheckoutController {
@@ -71,6 +72,9 @@ public class CheckoutController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private MailConstructor mailConstructor;
 	
 	@RequestMapping("/checkout")
 	public String checkout(
