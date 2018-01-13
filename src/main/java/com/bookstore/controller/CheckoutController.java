@@ -1,6 +1,7 @@
 package com.bookstore.controller;
 
 import java.security.Principal;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import com.bookstore.service.CartItemService;
 import com.bookstore.service.PaymentService;
 import com.bookstore.service.ShippingAddressService;
 import com.bookstore.service.UserService;
+import com.bookstore.utility.KRConstants;
 
 @Controller
 public class CheckoutController {
@@ -104,5 +106,22 @@ public class CheckoutController {
 			}
 		}
 		
+		model.addAttribute("shippingAddress", shippingAddress);
+		model.addAttribute("payment", payment);
+		model.addAttribute("billingAddress", billingAddress);
+		model.addAttribute("cartItemList", cartItemList);
+		model.addAttribute("shoppingCart", user.getShoppingCart());
+		
+		List<String> stateList = KRConstants.listOfKRStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList", stateList);
+
+		model.addAttribute("/classActiveShipping", true);
+		
+		if(missingRequiredField) {
+			model.addAttribute("missingRequiredField", true);
+		}
+		
+		return "checkout";
 	}
 }

@@ -33,16 +33,16 @@
 						<hr />
 						<h3>결제 정보</h3>
 							<div class="row">
-								<div class="col-xs-7 text-left">금액:</div>
+								<div class="col-xs-7 text-left">주문 금액:</div>
 								<div class="col-xs-5 text-right">
-									<span th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0 ,0)}"> 원</span>
+									<span th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0 , 'COMMA', 0, 'POINT')}"></span> 원
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-7 text-left">세금:</div>
 								<div class="col-xs-5 text-right">
-									<span th:with="tax=${shoppingCart.grandTotal*0.06}"
-											th:text="${#numbers.formatDecimal(tax, 0 ,0)}"> 원</span>
+									<span th:with="tax=${shoppingCart.grandTotal*0.1}"
+											th:text="${#numbers.formatDecimal(tax, 0 , 'COMMA', 0, 'POINT')}"></span> 원
 								</div>
 							</div>
 							<div class="row">
@@ -53,9 +53,9 @@
 								</div>
 								<div class="col-xs-5 text-right">
 									<h3>
-										<strong style="color: darkred;">$<span
+										<strong style="color: darkred;"><span
 											th:with="total=${shoppingCart.grandTotal+shoppingCart.grandTotal*0.1}"
-											th:text="${#numbers.formatDecimal(total, 0 ,0)}"></span> 원</strong>
+											th:text="${#numbers.formatDecimal(total, 0 , 'COMMA', 0, 'POINT')}"></span> 원</strong>
 									</h3>
 								</div>
 							</div>
@@ -64,7 +64,7 @@
 					</div>
 				</div>
 				<div class="col-xs-8">
-					<div th:if=${missingRequiredField}>
+					<div th:if="${missingRequiredField}">
 						<h5 class="alert alert-warning">필수 사항에 입력되지 않았습니다.</h5>
 					</div>
 					
@@ -403,7 +403,7 @@
 
 											<div class="col-xs-2">
 												<h5 style="color: #db3208; font-size: large;">
-													<span th:text="${cartItem.book.ourPrice}"
+													<span th:text="${#numbers.formatDecimal(cartItem.book.ourPrice, 0 , 'COMMA', 0, 'POINT')}"
 														th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span> 원
 												</h5>
 											</div>
@@ -416,16 +416,17 @@
 
 									<hr />
 									<h4 class="col-xs-12 text-right">
-										<strong style="font-size: large;">주문 금액 (<span
-											th:text="${#lists.size(cartItemList)}"></span> 제품):
-										</strong> <span style="color: #db3208; font-szie: large;"><span
-											th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0 ,0)}"></span></span> 원
+										<strong style="font-size: large;">총 금액 (<span
+											th:text="${#lists.size(cartItemList)}"></span> 개 제품):
+										</strong> <span style="color: #db3208; font-szie: large;"><span 
+											th:with="total=${shoppingCart.grandTotal+shoppingCart.grandTotal*0.1}" 
+											th:text="${#numbers.formatDecimal(total, 0 , 'COMMA', 0, 'POINT')}"></span></span> 원
 									</h4>
 									<br />
 									<br />
 									<button type="submit" class="btn btn-warning btn-block">결제하기</button>
 									<p style="font-size:smaller;">결제를 위하여
-									<a href="#">개인 정보</a>사항 및<a href="#">사용 조건</a>에 동의합니다.</p>
+									<a href="#">개인 정보</a>사항 및 <a href="#">사용 조건</a>에 동의합니다.</p>
 								</div>
 							</div>
 						</div>
