@@ -33,60 +33,60 @@ public class ShippingAddress {
 		this.id = id;
 	}
 
-	public String getUserShippingName() {
+	public String getShippingAddressName() {
 		return ShippingAddressName;
 	}
 
-	public void setUserShippingName(String ShippingAddressName) {
-		this.ShippingAddressName = ShippingAddressName;
+	public void setShippingAddressName(String shippingAddressName) {
+		ShippingAddressName = shippingAddressName;
 	}
 
-	public String getUserShippingStreet1() {
+	public String getShippingAddressStreet1() {
 		return ShippingAddressStreet1;
 	}
 
-	public void setUserShippingStreet1(String ShippingAddressStreet1) {
-		this.ShippingAddressStreet1 = ShippingAddressStreet1;
+	public void setShippingAddressStreet1(String shippingAddressStreet1) {
+		ShippingAddressStreet1 = shippingAddressStreet1;
 	}
 
-	public String getUserShippingStreet2() {
+	public String getShippingAddressStreet2() {
 		return ShippingAddressStreet2;
 	}
 
-	public void setUserShippingStreet2(String ShippingAddressStreet2) {
-		this.ShippingAddressStreet2 = ShippingAddressStreet2;
+	public void setShippingAddressStreet2(String shippingAddressStreet2) {
+		ShippingAddressStreet2 = shippingAddressStreet2;
 	}
 
-	public String getUserShippingCity() {
+	public String getShippingAddressCity() {
 		return ShippingAddressCity;
 	}
 
-	public void setUserShippingCity(String ShippingAddressCity) {
-		this.ShippingAddressCity = ShippingAddressCity;
+	public void setShippingAddressCity(String shippingAddressCity) {
+		ShippingAddressCity = shippingAddressCity;
 	}
 
-	public String getUserShippingState() {
+	public String getShippingAddressState() {
 		return ShippingAddressState;
 	}
 
-	public void setUserShippingState(String ShippingAddressState) {
-		this.ShippingAddressState = ShippingAddressState;
+	public void setShippingAddressState(String shippingAddressState) {
+		ShippingAddressState = shippingAddressState;
 	}
 
-	public String getUserShippingCountry() {
+	public String getShippingAddressCountry() {
 		return ShippingAddressCountry;
 	}
 
-	public void setUserShippingCountry(String ShippingAddressCountry) {
-		this.ShippingAddressCountry = ShippingAddressCountry;
+	public void setShippingAddressCountry(String shippingAddressCountry) {
+		ShippingAddressCountry = shippingAddressCountry;
 	}
 
-	public String getUserShippingZipcode() {
+	public String getShippingAddressZipcode() {
 		return ShippingAddressZipcode;
 	}
 
-	public void setUserShippingZipcode(String ShippingAddressZipcode) {
-		this.ShippingAddressZipcode = ShippingAddressZipcode;
+	public void setShippingAddressZipcode(String shippingAddressZipcode) {
+		ShippingAddressZipcode = shippingAddressZipcode;
 	}
 
 	public User getUser() {
@@ -96,5 +96,4 @@ public class ShippingAddress {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 }

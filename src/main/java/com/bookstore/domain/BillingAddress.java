@@ -31,60 +31,68 @@ public class BillingAddress {
 		this.id = id;
 	}
 
-	public String getUserBillingName() {
+	public String getBillingAddressName() {
 		return BillingAddressName;
 	}
 
-	public void setUserBillingName(String BillingAddressName) {
-		this.BillingAddressName = BillingAddressName;
+	public void setBillingAddressName(String billingAddressName) {
+		BillingAddressName = billingAddressName;
 	}
 
-	public String getUserBillingStreet1() {
+	public String getBillingAddressStreet1() {
 		return BillingAddressStreet1;
 	}
 
-	public void setUserBillingStreet1(String BillingAddressStreet1) {
-		this.BillingAddressStreet1 = BillingAddressStreet1;
+	public void setBillingAddressStreet1(String billingAddressStreet1) {
+		BillingAddressStreet1 = billingAddressStreet1;
 	}
 
-	public String getUserBillingStreet2() {
+	public String getBillingAddressStreet2() {
 		return BillingAddressStreet2;
 	}
 
-	public void setUserBillingStreet2(String BillingAddressStreet2) {
-		this.BillingAddressStreet2 = BillingAddressStreet2;
+	public void setBillingAddressStreet2(String billingAddressStreet2) {
+		BillingAddressStreet2 = billingAddressStreet2;
 	}
 
-	public String getUserBillingCity() {
+	public String getBillingAddressCity() {
 		return BillingAddressCity;
 	}
 
-	public void setUserBillingCity(String BillingAddressCity) {
-		this.BillingAddressCity = BillingAddressCity;
+	public void setBillingAddressCity(String billingAddressCity) {
+		BillingAddressCity = billingAddressCity;
 	}
 
-	public String getUserBillingState() {
+	public String getBillingAddressState() {
 		return BillingAddressState;
 	}
 
-	public void setUserBillingState(String BillingAddressState) {
-		this.BillingAddressState = BillingAddressState;
+	public void setBillingAddressState(String billingAddressState) {
+		BillingAddressState = billingAddressState;
 	}
 
-	public String getUserBillingCountry() {
+	public String getBillingAddressCountry() {
 		return BillingAddressCountry;
 	}
 
-	public void setUserBillingCountry(String BillingAddressCountry) {
-		this.BillingAddressCountry = BillingAddressCountry;
+	public void setBillingAddressCountry(String billingAddressCountry) {
+		BillingAddressCountry = billingAddressCountry;
 	}
 
-	public String getUserBillingZipcode() {
+	public String getBillingAddressZipcode() {
 		return BillingAddressZipcode;
 	}
 
-	public void setUserBillingZipcode(String BillingAddressZipcode) {
-		this.BillingAddressZipcode = BillingAddressZipcode;
+	public void setBillingAddressZipcode(String billingAddressZipcode) {
+		BillingAddressZipcode = billingAddressZipcode;
 	}
-	
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
 }
