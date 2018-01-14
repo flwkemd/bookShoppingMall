@@ -569,6 +569,9 @@ public class HomeController {
 		model.addAttribute("user", currentUser);
 		model.addAttribute("classActiveEdit", true);
 		
+		model.addAttribute("listOfShippingAddresses", true);
+		model.addAttribute("listOfCreditCards", true);
+		
 		UserDetails userDetails = userSecurityService.loadUserByUsername(user.getUsername());
 
 		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
