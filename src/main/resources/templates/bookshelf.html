@@ -76,7 +76,7 @@
 											<span style="text-decoration: line-through;"><span
 												th:text="${#numbers.formatDecimal(book.listPrice, 0 , 'COMMA', 0, 'POINT')}"></span>원</span>
 
-											<p th:utext="${#strings.abbreviate(book.description, 1000)}"></p>
+											<p th:utext="${#strings.abbreviate(book.description, 500)}"></p>
 										</div>
 									</div>
 								</div>
@@ -91,5 +91,21 @@
 	<div th:replace="common/header :: footer"/>
 
 	<div th:replace="common/header :: body-bottom-scripts" />
+
+	<script>
+		$(document).ready(function(){
+			$('#bookList').DataTable({
+				"lengthMenu":[[5,10,15,20,-1],[5,10,15,20,"All"]],
+				"ordering":false,
+				stateSave:true
+			});
+			
+			$("#bookList").on('page.dt', function(){
+				$('html, body').animate({
+					scrollTop: $('#bookList').offset().top
+				}, 200);
+			});
+		});
+	</script>
 </body>
 </html>
