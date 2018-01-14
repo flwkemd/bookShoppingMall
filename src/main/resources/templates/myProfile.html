@@ -30,7 +30,7 @@
 					<li th:classappend="${classActiveEdit}? 'active'"><a
 						href="#tab-1" data-toggle="tab"><span style="color: red;">수정하기</span></a></li>
 					<li th:classappend="${classActiveOrders}? 'active'"><a
-						href="#tab-2" data-toggle="tab"><span style="color: red;">주문하기</span></a></li>
+						href="#tab-2" data-toggle="tab"><span style="color: red;">주문 내역</span></a></li>
 					<li th:classappend="${classActiveBilling}? 'active'"><a
 						href="#tab-3" data-toggle="tab"><span style="color: red;">구매 내역</span></a></li>
 					<li th:classappend="${classActiveShipping}? 'active'"><a
@@ -253,7 +253,7 @@
 																	<td class="emptyrow"></td>
 																	<td class="emptyrow text-center"><strong>총 금액</strong></td>
 																	<td th:with="total=${order.orderTotal+order.orderTotal*0.1}"
-															            data-th-text="${#numbers.formatDecimal(total, 0, 0)}"
+															            data-th-text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT')}"
 															            class="emptyrow text-right">
 															        </td>
 																</tr>
