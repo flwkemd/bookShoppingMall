@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+<meta charset="utf-8"/>
 
 <!-- Bootstrap core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -22,18 +23,18 @@
 </style>
 </head>
 <body>
-<p><span th:text="${user.firstName}"></span>´Ô,</p>
+<p><span th:text="${user.firstName}"></span>ë‹˜,</p>
 <br/>
-<p>ºÏ ½ºÅä¾î¿¡¼­ ÁÖ¹®À» ÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù. ¿ì¸® ¼­ºñ½º¿¡ ¸¸Á·ÇÏ¼ÌÀ¸¸é ÁÁ°Ú½À´Ï´Ù!</p>
-<p>ÁÖ¹® ¹øÈ£: <strong>#<span th:text="${order.id}"></span></strong>. ÁÖ¹® »ó¼¼ ³»¿ª:</p>
-<h2>ÁÖ¹® »ó¼¼ ³»¿ª #<span th:text="${order.id}"></span></h2>
+<p>ë¶ ìŠ¤í† ì–´ì—ì„œ ì£¼ë¬¸ì„ í•´ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤. ìš°ë¦¬ ì„œë¹„ìŠ¤ì— ë§Œì¡±í•˜ì…¨ìœ¼ë©´ ì¢‹ê² ìŠµë‹ˆë‹¤!</p>
+<p>ì£¼ë¬¸ ë²ˆí˜¸: <strong>#<span th:text="${order.id}"></span></strong>.</p>
+<h2>ì£¼ë¬¸ ìƒì„¸ ë‚´ì—­ #<span th:text="${order.id}"></span></h2>
 <hr/>
 
 <table>
 	<tr>
-		<th>°Å·¡ ³»¿ª¼­</th>
-		<th>½Å¿ëÄ«µå Á¤º¸</th>
-		<th>¹è¼Û ÁÖ¼Ò</th>
+		<th>ì‹ ìš©ì¹´ë“œ ì£¼ì†Œ</th>
+		<th>ì‹ ìš©ì¹´ë“œ ì •ë³´</th>
+		<th>ë°°ì†¡ ì£¼ì†Œ</th>
 	</tr>
 	<tr>
 		<td>
@@ -60,14 +61,14 @@
 	</tr>
 </table>
 
-<h3><strong>ÁÖ¹® ¸í¼¼¼­</strong></h3>
+<h3><strong>ì£¼ë¬¸ ëª…ì„¸ì„œ</strong></h3>
 <table>
 <thead>
 	<tr>
-		<td><strong>Á¦Ç°</strong></td>
-		<td class="text-center"><strong>°¡°Ý</strong></td>
-		<td class="text-center"><strong>¼ö·®</strong></td>
-		<td class="text-right"><strong>±Ý¾×</strong></td>
+		<td><strong>ì œí’ˆ</strong></td>
+		<td class="text-center"><strong>ê°€ê²©</strong></td>
+		<td class="text-center"><strong>ìˆ˜ëŸ‰</strong></td>
+		<td class="text-right"><strong>ê¸ˆì•¡</strong></td>
 	</tr>
 </thead>
 <tbody>
@@ -80,19 +81,19 @@
 	<tr>
 		<td class="highrow"></td>
 		<td class="highrow"></td>
-		<td class="highrow text-center"><strong>ÁÖ¹® ±Ý¾×</strong></td>
+		<td class="highrow text-center"><strong>ì£¼ë¬¸ ê¸ˆì•¡</strong></td>
 		<td class="highrow text-right" data-th-text="${#numbers.formatDecimal(order.orderTotal, 0 , 'COMMA', 0, 'POINT')}"></td>
 	</tr>
 	<tr>
 		<td class="emptyrow"></td>
 		<td class="emptyrow"></td>
-		<td class="emptyrow text-center"><strong>¼¼±Ý</strong></td>
+		<td class="emptyrow text-center"><strong>ì„¸ê¸ˆ</strong></td>
 		<td class="emptyrow text-right" data-th-text="${#numbers.formatDecimal(order.orderTotal*0.1, 0, 'COMMA', 0, 'POINT')}"></td>
 	</tr>
 	<tr>
 		<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
 		<td class="emptyrow"></td>
-		<td class="emptyrow text-center"><strong>ÃÑ ±Ý¾×</strong></td>
+		<td class="emptyrow text-center"><strong>ì´ ê¸ˆì•¡</strong></td>
 		<td th:with="total=${order.orderTotal+order.orderTotal*0.1}"
             data-th-text="${#numbers.formatDecimal(total, 0, 0)}"
             class="emptyrow text-right">
@@ -102,8 +103,8 @@
 </table>
 
 <br/>
-<p>ÃÖ°íÀÇ,</p>
-<p>ºÏ ½ºÅä¾î</p>
+<p>ìµœê³ ì˜,</p>
+<p>ë¶ ìŠ¤í† ì–´</p>
 <p>Since 2018</p>
 </body>
 </html>

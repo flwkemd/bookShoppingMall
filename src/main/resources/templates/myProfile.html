@@ -47,6 +47,15 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
+									
+									<div class="alert alert-danger" th:if="${incorrectPassword}">
+										<strong>잘못된 비밀번호 입니다!</strong> 비밀번호를 다시 확인해주세요!
+									</div>
+
+									<div class="alert alert-success" th:if="${updateSuccess}">
+										<strong>수정이 완료되었습니다!</strong>
+									</div>
+									
 									<form th:action="@{/updateUserInfo}" method="post">
 										<input type="hidden" name="id" th:value="${user.id}" />
 										

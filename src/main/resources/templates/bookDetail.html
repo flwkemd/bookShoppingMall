@@ -34,7 +34,7 @@
     		
     		<div class="col-xs-9">
     			<h3><span th:if="${addBookSuccess}" style="color: forestgreen"><i class="fa fa-check" aria-hidden="true" style="color: forestgreen"></i>카트에 추가되었습니다.</span></h3>
-    			<h3><span th:if="${notEnoughStock}" style="color: red">재고가 <span th:text="${book.inStockNumber}"></span> 없습니다.</span></h3>
+    			<h3><span th:if="${notEnoughStock}" style="color: red">재고가 없습니다.</span></h3>
     			<h3 th:text="${book.title}">제목</h3>
     			<div class="row">
     				<div class="col-xs-5">
