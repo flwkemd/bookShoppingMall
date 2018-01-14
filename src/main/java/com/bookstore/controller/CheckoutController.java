@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bookstore.domain.BillingAddress;
@@ -153,8 +154,7 @@ public class CheckoutController {
 		
 		return "checkout";
 	}
-	
-	@RequestMapping(value="/checkout", method=RequestMethod.POST){
+		@RequestMapping(value="/checkout", method=RequestMethod.POST)
 		public String checkoutPost(
 				@ModelAttribute("shippingAddress") ShippingAddress shippingAddress,
 				@ModelAttribute("billinggAddress") BillingAddress billingAddress,

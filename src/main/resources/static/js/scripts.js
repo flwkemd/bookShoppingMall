@@ -19,10 +19,10 @@ function checkPasswordMatch() {
 		$("#updateUserInfoButton").prop('disabled', false);
 	} else {
 		if(password != confirmPassword) {
-			$("#checkPasswordMatch").html("Passwords do not match!");
+			$("#checkPasswordMatch").html("비밀번호가 일치하지 않습니다.");
 			$("#updateUserInfoButton").prop('disabled', true);
 		} else {
-			$("#checkPasswordMatch").html("Passwords match");
+			$("#checkPasswordMatch").html("비밀번호가 일치합니다.");
 			$("#updateUserInfoButton").prop('disabled', false);
 		}
 	}
