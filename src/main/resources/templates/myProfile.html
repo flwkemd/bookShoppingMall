@@ -124,6 +124,146 @@
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
 									
+									<table class="table table-sm table-inverse">
+										<thead>
+											<tr>
+												<th>주문 날짜</th>
+												<th>주문 번호</th>
+												<th>총 금액</th>
+												<th>주문 상태</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="order : ${orderList}">
+												<td>
+													<a th:href="@{/orderDetail(id=${order.id})}"><span th:text="${order.orderDate}"></span></a>
+												</td>
+												<td data-th-text="${order.id}"></td>
+												<td data-th-text="${#numbers.formatDecimal(order.orderTotal, 0 , 'COMMA', 0, 'POINT')}"></td>
+												<td data-th-text="${order.orderStatus}"></td>
+											</tr>
+										</tbody>
+									</table>
+									
+									<div th:if="${displayOrderDetail}">
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="text-center">
+													<h2>주문 내역서 #<span th:text="${order.id}"></span></h2>
+												</div>
+												<hr />
+												
+												<div class="row">
+													<div class="col-xs-4">
+														<div class="panel panel-default height">
+															<div class="panel-heading">
+																<strong>신용카드 주소</strong>
+															</div>
+															<div class="panel-body">
+																<span th:text="${order.billingAddress.billingAddressName}"></span><br />
+																<span th:text="${order.billingAddress.billingAddressStreet1}+' '+${order.billingAddress.billingAddressStreet2}"></span><br />
+																<span th:text="${order.billingAddress.billingAddressState}"></span><br />
+																<span th:text="${order.billingAddress.billingAddressCity}"></span><br />
+																<span th:text="${order.billingAddress.billingAddressZipcode}"></span><br />
+															</div>
+														</div>
+													</div>
+													
+													<div class="col-xs-4">
+														<div class="panel panel-default height">
+															<div class="panel-heading">
+																<strong>결제 정보</strong>
+															</div>
+															<div class="panel-body">
+																<span th:text="${order.payment.holderName}">카드 소지자 이름</span><br />
+																<span th:text="${order.payment.cardNumber}">카드 번호</span><br />
+																<span>만료 기간:</span><span
+																	th:text="${order.payment.expiryMonth}"></span>/<span
+																	th:text="${order.payment.expiryYear}"></span><br />
+															</div>
+														</div>
+													</div>
+													<div class="col-xs-4">
+														<div class="panel panel-default height">
+															<div class="panel-heading">
+																<strong>배송 주소</strong>
+															</div>
+															<div class="panel-body">
+																<span
+																	th:text="${order.shippingAddress.shippingAddressName}"></span><br />
+																<span
+																	th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br />
+																<span
+																	th:text="${order.shippingAddress.shippingAddressCity}"></span><br />
+																<span
+																	th:text="${order.shippingAddress.shippingAddressState}"></span><br />
+																<span
+																	th:text="${order.shippingAddress.shippingAddressZipcode}"></span><br />
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="panel-heading">
+													<h3 class="text-center">
+														<strong>주문 내역서</strong>
+													</h3>
+												</div>
+												<div class="panel-body">
+													<div class="table-responsive">
+														<table class="table table-condensed">
+															<thead>
+																<tr>
+																	<td><strong>제품</strong></td>
+																	<td class="text-center"><strong>가격</strong></td>
+																	<td class="text-center"><strong>수량</strong></td>
+																	<td class="text-right"><strong>총 가격</strong></td>
+																</tr>
+															</thead>
+															<tbody>
+																<tr th:each="cartItem : ${cartItemList}">
+																	<td data-th-text="${cartItem.book.title}"></td>
+																	<td class="text-center"
+																		data-th-text="${#numbers.formatDecimal(cartItem.book.ourPrice, 0 , 'COMMA', 0, 'POINT')}"></td>
+																	<td class="text-center" data-th-text="${cartItem.qty}"></td>
+																	<td class="text-center"
+																		data-th-text="${#numbers.formatDecimal(cartItem.subtotal, 0 , 'COMMA', 0, 'POINT')}"></td>
+																</tr>
+																<tr>
+																	<td class="highrow"></td>
+																	<td class="highrow"></td>
+																	<td class="highrow text-center"><strong>주문 금액</strong></td>
+																	<td class="highrow text-right"
+																		data-th-text="${#numbers.formatDecimal(order.orderTotal, 0 , 'COMMA', 0, 'POINT')}"></td>
+																</tr>
+																<tr>
+																	<td class="emptyrow"></td>
+																	<td class="emptyrow"></td>
+																	<td class="emptyrow text-center"><strong>세금</strong></td>
+																	<td class="emptyrow text-right"
+																		data-th-text="${#numbers.formatDecimal(order.orderTotal*0.1, 0, 'COMMA', 0, 'POINT')}"></td>
+																</tr>
+																<tr>
+																	<td class="emptyrow"><i
+																		class="fa fa-barcode iconbig"></i></td>
+																	<td class="emptyrow"></td>
+																	<td class="emptyrow text-center"><strong>총 금액</strong></td>
+																	<td th:with="total=${order.orderTotal+order.orderTotal*0.1}"
+															            data-th-text="${#numbers.formatDecimal(total, 0, 0)}"
+															            class="emptyrow text-right">
+															        </td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
