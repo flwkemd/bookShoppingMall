@@ -56,7 +56,6 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a th:href="@{/shoppingCart/cart}">쇼핑 카트</a></li>
-						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a></li>
 						<li><a sec:authorize="isAuthenticated()"
 							th:href="@{/myProfile}">마이 페이지</a></li>
 						<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a></li>
@@ -66,6 +65,68 @@
 			</div>
 			<!--/.container-fluid -->
 		</nav>
+	</div>
+  	
+<div th:fragment="footer">
+		<br />
+		<br />
+		<footer>
+			<div class="row">
+				<div class="col-xs-3 footerleft">
+					<div class="logofooter">
+						<a th:href="@{/}"><img class="img-responsive"
+							src="/image/logo.png" style="width: 200px;" /></a>
+					</div>
+					<p>
+						북 스토어 입니다. <br />최고의 서비스만을 취급합니다.
+					</p>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">연락처</h6>
+					<ul class="post">
+						<p>
+							<i class="fa fa-map-pin"></i> 324, 강남대로<br /> 강남구 서울특별시
+						</p>
+						<p>
+							<i class="fa fa-phone"></i> 전화번호 : 02) 0000 - 0000
+						</p>
+						<p>
+							<i class="fa fa-envelope"></i> 이메일 : info@bookstore.com
+						</p>
+					</ul>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">링크</h6>
+					<ul class="footer-ul">
+						<li><a href="#"> 개인 정책</a></li>
+						<li><a href="#"> 개인정보 &#38; 상태</a></li>
+						<li><a href="#"> 자주하는 질문</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">영업 시간</h6>
+					<div class="post">
+						<p>월요일 - 토요일: 9am - 11pm</p>
+						<p>일요일: 10am - 10pm</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<div class="copyright">
+			<div class="col-md-6">
+				<p>© 2018 - All Rights Reserved</p>
+			</div>
+			<div class="col-md-6">
+				<ul class="bottom_ul">
+					<li><a href="#">북 스토어</a></li>
+					<li><a href="#">블로그</a></li>
+					<li><a href="#">자주하는 질문</a></li>
+					<li><a href="#">문의하기</a></li>
+					<li><a href="#">지도</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
   	
 	<div th:fragment="body-bottom-scripts">
